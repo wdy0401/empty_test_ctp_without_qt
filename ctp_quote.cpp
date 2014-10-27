@@ -5,7 +5,7 @@
 #include"gpp_qt/wfunction/wfunction.h"
 #include"gpp_qt/cfg/cfg.h"
 
-extern CThostFtdcMdApi * pUserApi;
+//extern CThostFtdcMdApi * pUserApi;
 extern cfg simucfg;
 
 using namespace std;
@@ -37,6 +37,15 @@ void ctp_quote::init()
 	}
 }
 
+void ctp_quote::login(CThostFtdcMdApi * p)
+{
+	pUserApi=p;			// ´´½¨UserApi
+	CThostFtdcMdSpi* pUserSpi=this; 
+	pUserApi->RegisterSpi(this);
+	pUserApi->RegisterFront("tcp://asp-sim2-md1.financial-trading-platform.com:26213");
+	pUserApi->Init();
+	pUserApi->Join();
+}
 void ctp_quote::ReqUserLogin()
 {
 	int iResult = pUserApi->ReqUserLogin(req, ++nRequestID);

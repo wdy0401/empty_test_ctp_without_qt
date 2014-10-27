@@ -10,7 +10,7 @@ class ctp_quote : public CThostFtdcMdSpi
 {
 public:
 	void init();
-	//void login();
+	void login(CThostFtdcMdApi *);
 	void ReqUserLogin();
 	void OnRspError(CThostFtdcRspInfoField *pRspInfo,int nRequestID, bool bIsLast);
 
@@ -40,6 +40,8 @@ private:
 	int nRequestID;
 	char * * ppInstrumentID;
 	int nppInstrumentID;
+
+	CThostFtdcMdApi * pUserApi;
 };
 
 #endif

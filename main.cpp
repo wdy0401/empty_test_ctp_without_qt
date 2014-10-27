@@ -21,12 +21,13 @@ int main(int argc, char *argv[])
 
 	ctp_quote quote;
 	quote.init();		// ´´½¨UserApi
-	
+	quote.login(pUserApi);
+	/*
 	CThostFtdcMdSpi* pUserSpi=&quote; 
 	pUserApi->RegisterSpi(&quote);
 	pUserApi->RegisterFront("tcp://asp-sim2-md1.financial-trading-platform.com:26213");
 	pUserApi->Init();
 	pUserApi->Join();
-
+	*/
 	return 0;
 }
