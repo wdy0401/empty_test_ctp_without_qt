@@ -9,7 +9,11 @@ using namespace std;
 
 bars::bars()
 {
-	
+	_length=100;
+}
+void bars::setbarname(const string & barname)
+{
+	_barname=barname;
 }
 void bars::setlength(long length)
 {
@@ -23,14 +27,17 @@ void bars::updatebar(double value,long volume)
 void bars::updatebar(double value)
 {
 	long nowseq=int(tm.nowtic()/_length);
+	double t=tm.nowtic();
 	map<long,bar *>::iterator iter =_barmap.find(nowseq);
 	if(iter != _barmap.end())
 	{
+		iter->second->setnowtime();
 		iter->second->setvalue(value);
 	}
 	else
 	{
 		_nowbar = new bar;
+		_nowbar->setnowtime();
 		_nowbar->setvalue(value);
 		_barmap[nowseq]=_nowbar;
 	}

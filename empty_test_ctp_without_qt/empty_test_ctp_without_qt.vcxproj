@@ -70,14 +70,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\ctp_quote.cpp" />
+    <ClCompile Include="..\gpp_qt\bar\bar.cpp" />
+    <ClCompile Include="..\gpp_qt\bar\bars.cpp" />
+    <ClCompile Include="..\gpp_qt\bar\bars_manage.cpp" />
     <ClCompile Include="..\gpp_qt\cfg\cfg.cpp" />
     <ClCompile Include="..\gpp_qt\wfunction\wfunction.cpp" />
+    <ClCompile Include="..\gpp_qt\wtimer\wtimer.cpp" />
     <ClCompile Include="..\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ctp_quote.h" />
+    <ClInclude Include="..\gpp_qt\bar\bar.h" />
+    <ClInclude Include="..\gpp_qt\bar\bars.h" />
+    <ClInclude Include="..\gpp_qt\bar\bars_manage.h" />
     <ClInclude Include="..\gpp_qt\cfg\cfg.h" />
     <ClInclude Include="..\gpp_qt\wfunction\wfunction.h" />
+    <ClInclude Include="..\gpp_qt\wtimer\wtimer.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\ctp\thostmduserapi.lib" />

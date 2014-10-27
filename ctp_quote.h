@@ -40,8 +40,9 @@ private:
 	int nRequestID;
 	char * * ppInstrumentID;
 	int nppInstrumentID;
-
 	CThostFtdcMdApi * pUserApi;
+
+	int ctp_time_length;
 };
 
 #endif

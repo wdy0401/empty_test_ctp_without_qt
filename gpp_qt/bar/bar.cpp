@@ -33,7 +33,14 @@ void bar::setnowtime()
 }
 void bar::setvalue(double value,double tm)
 {
-	setnowtime(tm);
+	if(tm==0)
+	{
+		setnowtime();
+	}
+	else
+	{
+		setnowtime(tm);
+	}
 	setvalue(value);
 }
 void bar::setvalue(double value)

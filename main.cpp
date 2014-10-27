@@ -9,25 +9,27 @@
 #include"ctp/ThostFtdcTraderApi.h"
 
 #include"gpp_qt/cfg/cfg.h"
+#include"gpp_qt/bar/bar.h"
+#include"gpp_qt/bar/bars.h"
+#include"gpp_qt/bar/bars_manage.h"
+#include"gpp_qt/wtimer/wtimer.h"
 
-cfg simucfg;
+cfg simu_cfg;
+bars_manage simu_bars_manage;
+wtimer tm;
 CThostFtdcMdApi * pUserApi;
 
 int main(int argc, char *argv[])
 {
-	simucfg.setcfgfile("c:/cfg/simu_trade.cfg");
+	simu_cfg.setcfgfile("c:/cfg/simu_trade.cfg");
+	
+	simu_bars_manage.addbarlist(simu_cfg.getparam("INSTRUMENT_ID"));
 	
 	pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();
+	
+	ctp_quote simu_quote;
+	simu_quote.init();		
+	simu_quote.login(pUserApi);
 
-	ctp_quote quote;
-	quote.init();		// ´´½¨UserApi
-	quote.login(pUserApi);
-	/*
-	CThostFtdcMdSpi* pUserSpi=&quote; 
-	pUserApi->RegisterSpi(&quote);
-	pUserApi->RegisterFront("tcp://asp-sim2-md1.financial-trading-platform.com:26213");
-	pUserApi->Init();
-	pUserApi->Join();
-	*/
 	return 0;
 }

@@ -29,5 +29,7 @@ public:
 	static char * utf82gbk(const char*);
 	static void UnZipStream(std::ifstream& inputFile,std::ofstream& outputFile);
 	static void ZipStream(std::ifstream& inputFile,std::ofstream& outputFile);
+
+	static char * ctp_time_char_convert(char *,int );
 };
 #endif

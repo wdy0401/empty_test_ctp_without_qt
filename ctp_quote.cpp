@@ -4,9 +4,12 @@
 #include<list>
 #include"gpp_qt/wfunction/wfunction.h"
 #include"gpp_qt/cfg/cfg.h"
+#include"gpp_qt/bar/bars_manage.h"
+#include"gpp_qt/wtimer/wtimer.h"
 
-//extern CThostFtdcMdApi * pUserApi;
-extern cfg simucfg;
+extern cfg simu_cfg;
+extern bars_manage simu_bars_manage;
+extern wtimer tm;
 
 using namespace std;
 
@@ -14,20 +17,17 @@ void ctp_quote::init()
 {
 	nRequestID=0;
 	nppInstrumentID=0;
-		
-	string BROKER_ID="2030";
-	string INVESTOR_ID="00092";
-	string PASSWORD="888888";
-
+	ctp_time_length=sizeof(TThostFtdcTimeType);
+	
 	req=new CThostFtdcReqUserLoginField;
 	memset(req, 0, sizeof(*req));
-	strncpy(req->BrokerID,const_cast<char*>(BROKER_ID.c_str()),sizeof(req->BrokerID));
-	strncpy(req->UserID,const_cast<char*>(PASSWORD.c_str()),sizeof(req->UserID));
-	strncpy(req->Password,const_cast<char*>(PASSWORD.c_str()),sizeof(req->Password));
+	strncpy(req->BrokerID,const_cast<char*>(simu_cfg.getparam("BROKER_ID").c_str()),sizeof(req->BrokerID));
+	strncpy(req->UserID,const_cast<char*>(simu_cfg.getparam("INVESTOR_ID").c_str()),sizeof(req->UserID));
+	strncpy(req->Password,const_cast<char*>(simu_cfg.getparam("PASSWORD").c_str()),sizeof(req->Password));
 
 
 	ppInstrumentID=new char * [MAX_CONTRACT_NUMBER];
-	list<string> contracts=wfunction::splitstring(simucfg.getparam("INSTRUMENT_ID"));
+	list<string> contracts=wfunction::splitstring(simu_cfg.getparam("INSTRUMENT_ID"));
 	for(list<string>::iterator iter=contracts.begin();iter!=contracts.end();iter++)
 	{
 		ppInstrumentID[nppInstrumentID]=new char [MAX_CONTRACT_NAME];
@@ -86,14 +86,7 @@ void ctp_quote::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,	CThos
 }
 void ctp_quote::SubscribeMarketData()
 {
-/*	
-	char * p[]={"IF1411","IF1412"};
-	int np=2;
-*/	
-
-
 	int iResult = pUserApi->SubscribeMarketData(ppInstrumentID, nppInstrumentID);
-	//int iResult = pUserApi->SubscribeMarketData(p, np);
 	cout << "--->>> 发送行情订阅请求: " << ((iResult == 0) ? "成功" : "失败") << endl;
 }
 
@@ -125,6 +118,9 @@ void ctp_quote::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarke
 	cout<< "," << pDepthMarketData->LowestPrice;
 	cout<< "," << pDepthMarketData->Volume;
 	cout<< endl;
+
+	tm.settic(atof(wfunction::ctp_time_char_convert(pDepthMarketData->UpdateTime,ctp_time_length)));
+	simu_bars_manage.updatebar(pDepthMarketData->InstrumentID,pDepthMarketData->LastPrice);
 }
 bool ctp_quote::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
 {

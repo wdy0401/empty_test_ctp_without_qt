@@ -30,6 +30,18 @@
     <ClCompile Include="..\gpp_qt\cfg\cfg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\gpp_qt\bar\bars.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gpp_qt\bar\bar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gpp_qt\wtimer\wtimer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gpp_qt\bar\bars_manage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ctp_quote.h">
@@ -39,6 +51,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\gpp_qt\cfg\cfg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gpp_qt\bar\bar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gpp_qt\bar\bars.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gpp_qt\wtimer\wtimer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gpp_qt\bar\bars_manage.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

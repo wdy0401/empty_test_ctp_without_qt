@@ -92,6 +92,27 @@ void wfunction::ZipStream(std::ifstream& inputFile,std::ofstream& outputFile)
 	in.push(inputFile);
 	boost::iostreams::copy(in,outputFile);
 }
+char * wfunction::ctp_time_char_convert(char * ori,int length)
+{
+	char * ret = new char[length];
+	memset(ret,'\0',length);
+	int j=0;
+	for(int i=0;i>=0;i++)
+	{
+		if (ori[i]==':')
+		{
+			continue;
+		}
+		if (ori[i]=='\0')
+		{
+			break;
+		}
+		ret[j]=ori[i];
+		j++;
+		
+	}
+	return ret;
+}
 /*
 #include<iostream>
 #include<fstream>
