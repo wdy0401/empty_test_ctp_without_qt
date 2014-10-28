@@ -1,25 +1,21 @@
-#ifndef BARS_MANAGE
-#define BARS_MANAGE
+#ifndef BAR_MANAGE
+#define BAR_MANAGE
 
 #include "bars.h"
 #include<map>
 #include<string>
 
-class bars_manage
+class bar_manage
 {
 public:
-	void addbarlist(const std::string &);
 	void newbars(const std::string &);
-	void newbars(const std::string &,long);
 	void setlength(const std::string &,long);
 	void updatebar(const std::string &,double);//only price
 	void updatebar(const std::string &,double,long);//price and volume "trade"
-	bool isbarsexist(const std::string &);
 	bar * mergebar(const std::string &,long);
 	
 private:
-	std::map<std::string,bars *> _barsmap;
-	bars * _nowbars;
+	std::map<string,bars *> _barsmap;
 };
 
 #endif

@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
 	simu_bars_manage.addbarlist(simu_cfg.getparam("INSTRUMENT_ID"));
 	
 	pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();
+	
 	ctp_quote simu_quote;
 	simu_quote.init();		
 	simu_quote.login(pUserApi);
