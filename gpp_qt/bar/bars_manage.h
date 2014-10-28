@@ -5,6 +5,8 @@
 #include<map>
 #include<string>
 
+//默认的时间间隔为1分钟
+//目前尚无调整时间间隔的需求 
 class bars_manage
 {
 public:
