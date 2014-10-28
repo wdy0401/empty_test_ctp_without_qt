@@ -2,6 +2,9 @@
 #include<stdlib.h> 
 #include<Windows.h>
 
+#include "./empty_test_ctp/mainwindow.h"
+#include <QApplication>
+
 
 #include"ctp_quote.h"
 
@@ -13,6 +16,9 @@
 #include"gpp_qt/bar/bars.h"
 #include"gpp_qt/bar/bars_manage.h"
 #include"gpp_qt/wtimer/wtimer.h"
+
+#pragma warning (disable:4100)
+
 
 cfg simu_cfg;
 bars_manage simu_bars_manage;
@@ -30,5 +36,10 @@ int main(int argc, char *argv[])
 	simu_quote.init();		
 	simu_quote.login(pUserApi);
 
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
+    return a.exec();
 	return 0;
 }

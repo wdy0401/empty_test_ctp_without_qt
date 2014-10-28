@@ -27,7 +27,6 @@ void bars::updatebar(double value,long volume)
 void bars::updatebar(double value)
 {
 	long nowseq=int(tm.nowtic()/_length);
-	double t=tm.nowtic();
 	map<long,bar *>::iterator iter =_barmap.find(nowseq);
 	if(iter != _barmap.end())
 	{
